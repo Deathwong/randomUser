@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cartes Utilisateurs Aléatoires</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/users">RandomUserApp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/users">Home</a>
+                    </li>
+                </ul>
+                <form class="d-flex" method="get" action="/users">
+                    <select class="form-select me-2" id="sortBy" name="sortBy">
+                        <option value="dob">Date de naissance</option>
+                        <option value="name">Nom</option>
+                    </select>
+                    <button class="btn btn-outline-success" type="submit">Trier</button>
+                    <button class="btn btn-primary ms-2" type="button" onclick="location.href='/users?results=10'">
+                        Charger plus d'utilisateurs
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <h1 class="my-4 text-center">Cartes Utilisateurs Aléatoires</h1>
+    <div th:if="${users != null and !users.isEmpty()}">
+        <div class="row">
+            <div th:each="user : ${users}" class="col-md-4 mb-4">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <img th:src="${user.picture.large}" class="rounded-circle" alt="Photo de l'utilisateur"
+                             width="120" height="120">
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted info-message">Hi, My name is</p>
+                        <h5 class="card-title info-content" th:text="${user.name.first} + ' ' + ${user.name.last}"></h5>
+                        <div class="info-section">
+                            <p th:id="'info-0-' + ${user.login.uuid}" class="d-none"
+                               th:text="${user.name.first} + ' ' + ${user.name.last}"></p>
+                            <p th:id="'info-1-' + ${user.login.uuid}" class="d-none" th:text="${user.email}"></p>
+                            <p th:id="'info-2-' + ${user.login.uuid}" class="d-none" th:text="${user.dob.date}"></p>
+                            <p th:id="'info-3-' + ${user.login.uuid}" class="d-none"
+                               th:text="${user.location.city} + ', ' + ${user.location.state} + ', ' + ${user.location.country}"></p>
+                            <p th:id="'info-4-' + ${user.login.uuid}" class="d-none" th:text="${user.phone}"></p>
+                            <p th:id="'info-5-' + ${user.login.uuid}" class="d-none"
+                               th:text="${user.login.password}"></p>
+                        </div>
+                        <div class="d-flex justify-content-around mt-3">
+                            <button class="btn btn-outline-success btn-sm" onmouseover="showInfo(this)" data-index="0"
+                                    data-message="Hi, My name is" th:data-user-id="${user.login.uuid}"><i
+                                    class="fas fa-user"></i></button>
+                            <button class="btn btn-outline-secondary btn-sm" onmouseover="showInfo(this)" data-index="1"
+                                    data-message="My email is" th:data-user-id="${user.login.uuid}"><i
+                                    class="fas fa-envelope"></i></button>
+                            <button class="btn btn-outline-secondary btn-sm" onmouseover="showInfo(this)" data-index="2"
+                                    data-message="My birthday is" th:data-user-id="${user.login.uuid}"><i
+                                    class="fas fa-calendar"></i></button>
+                            <button class="btn btn-outline-secondary btn-sm" onmouseover="showInfo(this)" data-index="3"
+                                    data-message="I live in" th:data-user-id="${user.login.uuid}"><i
+                                    class="fas fa-map-marker-alt"></i></button>
+                            <button class="btn btn-outline-secondary btn-sm" onmouseover="showInfo(this)" data-index="4"
+                                    data-message="My phone number is" th:data-user-id="${user.login.uuid}"><i
+                                    class="fas fa-phone"></i></button>
+                            <button class="btn btn-outline-secondary btn-sm" onmouseover="showInfo(this)" data-index="5"
+                                    data-message="My password is" th:data-user-id="${user.login.uuid}"><i
+                                    class="fas fa-lock"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:if="${users == null or users.isEmpty()}">
+        <p class="text-center">Aucun utilisateur trouvé.</p>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="/js/scripts.js"></script>
+</body>
+</html>

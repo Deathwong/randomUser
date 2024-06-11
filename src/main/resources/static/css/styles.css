@@ -1,0 +1,82 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #343a40;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: none;
+    padding: 20px;
+}
+
+.card-header img {
+    border: 3px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    text-align: center;
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.text-muted {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.info-section p {
+    font-size: 1rem;
+    color: #495057;
+}
+
+.btn-sm {
+    padding: 5px 7px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+
+.load-more-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.load-more-button .btn {
+    width: auto;
+    height: auto;
+    font-size: 1rem;
+    padding: 10px 20px;
+}
+
+.navbar .form-inline .btn {
+    margin-left: 5px;
+}
