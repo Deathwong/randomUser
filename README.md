@@ -25,22 +25,28 @@ récupère les données des utilisateurs et les affiche dans un format convivial
 
 ## Installation
 
-1. Accédez au répertoire du projet : `cd chemin/vers/votre/projet`
-
-2. Construisez le projet avec Maven : `mvn clean install`
-
-3. Exécutez l'application : `mvn spring-boot:run`
-
-4. Ouvrez votre navigateur et accédez à `http://localhost:8080`.
-
-5. Utilisez votre IDE préféré pour ouvrir l'application.
+1. Cloner le projet :
+   ```bash
+   git clone https://github.com/Deathwong/randomUser
+   cd randomUser
+   ```
+2. Construire le projet avec Maven :
+   ```bash
+   mvn clean install
+   ```
+3. Exécuter l'application :
+   ```bash
+   mvn spring-boot:run
+   ```
+4. Ouvrir votre navigateur et accéder à `http://localhost:8080`.
+5. Utiliser votre IDE préféré pour ouvrir l'application.
 
 ### Points de Terminaison
 
 - **GET /users** - Récupérer et afficher une liste d'utilisateurs (20).
     - Paramètres :
         - `results` (optionnel, par défaut : 20) : Nombre d'utilisateurs à récupérer.
-        - `sortBy` (optionnel) : Trier les utilisateurs par nom (Name) et par date de naissance(dob).
+        - `sortBy` (optionnel) : Trier les utilisateurs par nom (name) et par date de naissance (dob).
 
 ## Exemple d'Utilisation
 
@@ -49,8 +55,6 @@ récupère les données des utilisateurs et les affiche dans un format convivial
 - Pour voir une liste d'utilisateurs triée par leur nom, ouvrez `http://localhost:8080/users?sortBy=name`.
 
 ## Structure du Projet
-
-Bien sûr, voici la structure du projet réécrite avec des tirets pour faciliter la lisibilité :
 
 ```plaintext
 src
@@ -85,3 +89,9 @@ src
 │       │   └── user-cards.html
 │       └── application.properties
 ```
+
+## Dépannage
+
+- Si le port 8080 est déjà utilisé, vous pouvez changer le port dans `src\main\resources\application.properties` en ajoutant `server.port=8081`.
+- Assurez-vous que votre connexion internet fonctionne, car l'application consomme l'API publique randomuser.me.
+- En cas d'erreur de compilation liée à Lombok, vérifiez que l'annotation processing est activée dans votre IDE.
